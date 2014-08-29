@@ -1,6 +1,6 @@
 # erb-snippets
 
-Snippets useful for writing ERB.
+Snippets and tags hotkey useful for writing ERB.
 
 ## ERB tags:
 `command`+`shift`+`,`

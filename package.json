@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Useful snippets and hotkeys for ERB templates.",
   "activationEvents": ["erb-snippets:erb_tags"],
-  "repository": "https://github.com/atom/erb-snippets",
+  "repository": "https://github.com/MartinPeverelli/erb-snippets",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
