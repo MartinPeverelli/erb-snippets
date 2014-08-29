@@ -7,7 +7,7 @@ Snippets and tags hotkey useful for writing ERB.
 
 Supports multiple line/selection. Cycles through the tags.
 
-![ERB Tags animation](./erb-animation.gif)
+![ERB Tags animation](https://raw.githubusercontent.com/MartinPeverelli/erb-snippets/master/erb-animation.gif)
 
 Credits to [@eddorre](https://github.com/eddorre), I did the conversion from his
 original SublimeText2 plugin.
