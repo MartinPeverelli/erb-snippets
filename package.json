@@ -1,0 +1,15 @@
+{
+  "name": "erb-snippets",
+  "main": "./lib/erb-snippets",
+  "version": "0.1.0",
+  "description": "Usefull snippets and hotkeys for ERB templates.",
+  "activationEvents": ["erb-snippets:erb_tags"],
+  "repository": "https://github.com/atom/erb-snippets",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "underscore-plus": "1.x"
+  }
+}
