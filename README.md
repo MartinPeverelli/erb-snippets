@@ -3,7 +3,7 @@
 Snippets and tags hotkey useful for writing ERB.
 
 ## ERB tags:
-`command`+`shift`+`,`
+`command`+`shift`+`.`
 
 Supports multiple line/selection. Cycles through the tags.
 
