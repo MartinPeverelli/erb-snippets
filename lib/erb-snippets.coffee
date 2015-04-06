@@ -10,7 +10,7 @@ ERB_CLOSER_REGEX = "-?%>"
 
 module.exports =
   activate: ->
-    atom.workspaceView.command "erb-snippets:erb_tags", => @erb_tags()
+    atom.commands.add "atom-workspace", "erb-snippets:erb_tags": => @erb_tags()
 
   erb_tags: ->
     # This assumes the active pane item is an editor
