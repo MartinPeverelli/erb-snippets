@@ -1,7 +1,7 @@
 {
   "name": "erb-snippets",
   "main": "./lib/erb-snippets",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Useful snippets and hotkeys for ERB templates.",
   "activationEvents": [
     "erb-snippets:erb_tags"
