@@ -14,7 +14,7 @@ module.exports =
 
   erb_tags: ->
     # This assumes the active pane item is an editor
-    editor = atom.workspace.activePaneItem
+    editor = atom.workspace.getActivePaneItem()
 
     # looping through each selection
     for selection in editor.getSelections() by 1
