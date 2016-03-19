@@ -1,4 +1,5 @@
 {Range} = require 'atom'
+{CompositeDisposable} = require 'atom'
 
 # erb supported blocks
 ERB_BLOCKS = [['<%=', '%>'], ['<%', '%>'], ['<%-', '-%>'], ['<%=', '-%>'], ['<%#', '%>'], ['<%', '-%>']]
@@ -8,13 +9,22 @@ ERB_OPENER_REGEX = '<%[\\=\\-\\#]?' #'(?!.*%>)' <-- commented out for the moment
 # matches the closing bracket.
 ERB_CLOSER_REGEX = "-?%>"
 
-module.exports =
-  activate: ->
-    atom.commands.add "atom-workspace", "erb-snippets:erb_tags": => @erb_tags()
+module.exports = ErbSnippets =
+  subscriptions: null
+
+  activate: (state) ->
+    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
+    @subscriptions = new CompositeDisposable
+
+    # Register command that toggles this view
+    @subscriptions.add atom.commands.add 'atom-workspace', 'erb-snippets:erb_tags': => @erb_tags()
+
+  deactivate: ->
+    @subscriptions.dispose()
 
   erb_tags: ->
     # This assumes the active pane item is an editor
-    editor = atom.workspace.activePaneItem
+    editor = atom.workspace.getActiveTextEditor()
 
     # looping through each selection
     for selection in editor.getSelections() by 1

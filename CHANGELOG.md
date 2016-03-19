@@ -1,3 +1,6 @@
+## 1.0.0 - Upgrade deprecations
+* Fixed all issues regarding deprecated API calls
+
 ## 0.4.2 - Update key binding
 * Updated key biding
 

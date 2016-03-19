@@ -1,11 +1,14 @@
-# See https://atom.io/docs/latest/creating-a-package#menus for more details
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
 'menu': [
   {
     'label': 'Packages'
     'submenu': [
       'label': 'erb-snippets'
       'submenu': [
-        { 'label': 'erb-tags', 'command': 'erb-snippets:erb_tags' }
+        {
+          'label': 'erb-tags'
+          'command': 'erb-snippets:erb_tags'
+        }
       ]
     ]
   }

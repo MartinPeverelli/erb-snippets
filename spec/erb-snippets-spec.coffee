@@ -1,4 +1,3 @@
-{WorkspaceView} = require 'atom'
 ErbSnippets = require '../lib/erb-snippets'
 
 # Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
@@ -7,24 +6,57 @@ ErbSnippets = require '../lib/erb-snippets'
 # or `fdescribe`). Remove the `f` to unfocus the block.
 
 describe "ErbSnippets", ->
-  activationPromise = null
+  [workspaceElement, activationPromise] = []
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView
+    workspaceElement = atom.views.getView(atom.workspace)
     activationPromise = atom.packages.activatePackage('erb-snippets')
 
   describe "when the erb-snippets:toggle event is triggered", ->
-    it "attaches and then detaches the view", ->
-      expect(atom.workspaceView.find('.erb-snippets')).not.toExist()
+    it "hides and shows the modal panel", ->
+      # Before the activation event the view is not on the DOM, and no panel
+      # has been created
+      expect(workspaceElement.querySelector('.erb-snippets')).not.toExist()
 
       # This is an activation event, triggering it will cause the package to be
       # activated.
-      atom.workspaceView.trigger 'erb-snippets:toggle'
+      atom.commands.dispatch workspaceElement, 'erb-snippets:toggle'
 
       waitsForPromise ->
         activationPromise
 
       runs ->
-        expect(atom.workspaceView.find('.erb-snippets')).toExist()
-        atom.workspaceView.trigger 'erb-snippets:toggle'
-        expect(atom.workspaceView.find('.erb-snippets')).not.toExist()
+        expect(workspaceElement.querySelector('.erb-snippets')).toExist()
+
+        erbSnippetsElement = workspaceElement.querySelector('.erb-snippets')
+        expect(erbSnippetsElement).toExist()
+
+        erbSnippetsPanel = atom.workspace.panelForItem(erbSnippetsElement)
+        expect(erbSnippetsPanel.isVisible()).toBe true
+        atom.commands.dispatch workspaceElement, 'erb-snippets:toggle'
+        expect(erbSnippetsPanel.isVisible()).toBe false
+
+    it "hides and shows the view", ->
+      # This test shows you an integration test testing at the view level.
+
+      # Attaching the workspaceElement to the DOM is required to allow the
+      # `toBeVisible()` matchers to work. Anything testing visibility or focus
+      # requires that the workspaceElement is on the DOM. Tests that attach the
+      # workspaceElement to the DOM are generally slower than those off DOM.
+      jasmine.attachToDOM(workspaceElement)
+
+      expect(workspaceElement.querySelector('.erb-snippets')).not.toExist()
+
+      # This is an activation event, triggering it causes the package to be
+      # activated.
+      atom.commands.dispatch workspaceElement, 'erb-snippets:toggle'
+
+      waitsForPromise ->
+        activationPromise
+
+      runs ->
+        # Now we can test for view visibility
+        erbSnippetsElement = workspaceElement.querySelector('.erb-snippets')
+        expect(erbSnippetsElement).toBeVisible()
+        atom.commands.dispatch workspaceElement, 'erb-snippets:toggle'
+        expect(erbSnippetsElement).not.toBeVisible()
