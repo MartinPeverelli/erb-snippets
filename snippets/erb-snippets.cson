@@ -1,4 +1,19 @@
 ".erb":
+  "Ruby Eval":
+    prefix: "\%"
+    body: """
+      <% $1 %>
+    """
+  "Ruby Comment":
+    prefix: "\%#"
+    body: """
+      <%# $1 %>
+    """
+  "Ruby Output":
+    prefix: "\%="
+    body: """
+      <%= $1 %>
+    """
   "if block":
     prefix: "if"
     body: """
